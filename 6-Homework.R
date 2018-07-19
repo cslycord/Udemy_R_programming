@@ -21,6 +21,8 @@ myMovies=movies[which(check),]
 
 # check that my subset plus anything not in it is the same total
 nrow(movies[which(!(check)),])+nrow(myMovies) #608 rows total
+
+#check the new dataset
 nrow(myMovies)
 head(myMovies)
 tail(myMovies)
