@@ -32,25 +32,38 @@ library(ggplot2)
 library(extrafont)
 loadfonts(device = "win")
 
-
+# create plot with my data set
+# US gross % on y, Genre on x, and
+# size as Buget in millions
 myplot=ggplot(data=myMovies,aes(x=Genre,
                                 y=Gross...US,
                                 size=Budget...mill.)) +
+  # print random jitter colored by studio
   geom_jitter(aes(color=Studio))+
-  geom_boxplot(size=1.2,alpha=0.5)+
+  
+  # overlay an opaque boxplot on top 
+  geom_boxplot(size=1.2,alpha=0.5,outlier.color=NA)+
+  
+  # change y axis label
   ylab("Gross % US")+
+  # add the title
   ggtitle("Domestic Gross % by Genre")+
-  theme(axis.title.x = element_text(color="Blue",size=30),
+  #set
+  theme(#set x and y axis text format
+        axis.title.x = element_text(color="Blue",size=30),
         axis.title.y = element_text(color="Blue",size=30),
         axis.text.x = element_text(size=20),
         axis.text.y = element_text(size=20),
         
+        #set legend text format
         legend.title = element_text(size = 10),
         legend.text = element_text(size = 8),
-        #legend.position = c(1,1),
-        #legend.justification = c(1,1),
         
+        #set title positioning
         plot.title = element_text(size=30,hjust=0.5),
+        #set font stuff
         text=element_text(family="Comic Sans MS"))
+#reset size variable for legend
 myplot$labels$size="Budget $M"
+#print
 myplot
